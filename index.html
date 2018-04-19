@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <link href="style.css" rel="stylesheet">
+    <link href="External/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="row">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Persistent queue</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+                </ul>
+             </div>
+        </nav>
+    </div>
+
+    <div id="aboutModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">О сайте</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            На сайте представлена визуализация работы персистентной очереди.<br> 
+                            Очереди, предоставляющей доступ ко всем своим предыдущим версиям.<br>
+                            В данном случае реализована функционаяльная персистентность.<br>
+                        </div>
+                        <br>
+                        <div class="row">
+                            Изначально создана пустая версия очереди с номером 0.<br>
+                            Каждая новая версия очереди получает номер последней + 1.<br>
+                            Все операции производятся над текущей версией.<br>
+                            После создание новой версии, текущая автоматически меняется.<br>
+                        </div>
+                        <br>
+                        <div class="row">
+                            Для запуска пошагового режима нажмите соответсвующую кнопку внизу экрана.<br>
+                            В пошаговом режиме вы можете выполнять шаги вперед и назад в рамках одной<br>
+                            операции над персистентной очередью. Также присутствует возможность<br>
+                            завершить пошаговый режим, запустив оставшиеся шаги в автоматическом режиме.<br>
+                        </div>
+                        <br>
+                        <div class="row">
+                            Пункт random operations позволяет выполнить заданое количество<br>
+                            случайных операций над персистентной очередью. Просто матривать<br>
+                            их можно как в пошаговом так и в автоматическом режимах.<br>
+                        </div>
+                        <br>
+                        <div class="row">
+                            Пункт without visualization позволяет позволяет получить результат<br>
+                            работы персистентной очереди в обход визуализации. При каждом вызове<br>
+                            изначально присутствует только нулевая пустая версия очереди.<br>
+                            Запросы бывают 2 типов: "push i j", где i - номер очереди, <br>
+                            а j - добавляемое значение и "pop i", где i - номер очереди.<br>
+                            Каждый запрос начинается с новой строки. На выход подаются элементы,<br>
+                            возвращенные в результате операций pop, каждый с новой строки.<br>
+                        </div>
+                        <br>
+                        <div class="row">
+                            Больше про персистентную очередь можно прочитать <a href="https://neerc.ifmo.ru/wiki/index.php?title=Персистентная_очередь">здесь:</a><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="queue-container"></div>
+
+    <div class="info-panel-btn" onclick="info_panel_click();">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </div>
+
+    <div class="info-panel">
+        <div>
+            Current version: <span id="curr-version-outp">0</span>
+        </div>
+        <div>
+            isRecopy: <span id="recopy-mode-atatus">False</span>
+        </div>
+        <div>
+            toCopy: <span id="to-copy-value">0</span>
+        </div>
+    </div>
+
+    <div class="operation-result-panel-btn" onclick="operation_result_panel_click();">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </div>
+
+    <div class="operation-result-panel">
+        <div id="operation-inner-div">
+            <span id="last-pop-res-outp"></span>
+        </div>
+    </div>
+
+    <div class="input-panel-btn left-panel" onclick="input_panel_click();">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </div>
+
+    <div class="input-panel left-panel">
+        <div onclick="showPush();">Push</div>
+        <div onclick="popFromCurr();">Pop</div>
+        <div onclick="showSelect();">Select version</div>
+        <div onclick="showRandomOperations();">Random operations</div>
+        <div onclick="showWithoutVisualisation();">Without visualisation</div>
+    </div>
+
+    <div class="push-panel left-panel">
+        <input class="myinp" id="el-to-push" type="text"/>
+        <div class="mybtn" onclick="pushToCurr();">Go</div>
+    </div>
+
+    <div class="select-panel left-panel">
+        <input class="myinp" id="vers-to-set" type="text" />
+        <div class="mybtn" onclick="changeCurNumb();">Go</div>
+    </div>
+
+    <div class="random-panel left-panel">
+        <input class="myinp" id="random-operation-number" type="text" />
+        <div class="mybtn" onclick="startRandomOperations();">Go</div>
+    </div>
+
+    <div class="wisout-visualization-panel left-panel">
+        <textarea class="myinp" id="wisout-visualization-command" type="text"></textarea>
+        <div class="mybtn btn-wv" onclick="wisoutVisualizationStart();">Get answer</div>
+    </div>
+
+    <div class="wisout-visualization-result-panel left-panel">
+    </div>
+
+    <div class="error-panel-left left-panel">
+        Бла бла ошибка бла бла
+    </div>
+
+    <footer class="footer">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
+            <span>slow</span>
+            <input id="duration-inp" type="range" min="100" max="1500" value="550" onchange="changeDuration();"/>
+            <span>fast</span>
+        </div>
+
+        <div class="float-right">
+            <div class="inline">
+                Step mode <div class="mybtn mode-btn" onclick="changeStepMode();">Off</div>
+            </div>
+            <div class="inline">
+                <div class="mybtn back-step" onclick="stepBack();"><span class="glyphicon glyphicon-step-backward"></span></div>
+            </div>
+            <div class="inline">
+                <div class="mybtn front-step" onclick="stepToEnd();"><span class="glyphicon glyphicon-forward"></span></div>
+            </div>
+            <div class="inline">
+                <div class="mybtn front-step" onclick="stepFront();"><span class="glyphicon glyphicon-step-forward"></span></div>
+            </div>
+            <div class="inline step-error">
+            </div>
+        </div>
+    </footer>
+</body>
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="External/Jqery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="External/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="logic.js"></script>
+</html>

@@ -1,0 +1,309 @@
+html {
+  position: relative;
+  min-height: 100%;
+  overflow:  hidden;
+}
+body {
+  margin-bottom: 60px;
+  overflow:  hidden;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footer input {
+    margin: 15px;
+    display: inline-block !important;
+    width: 50% !important;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.footer .inline {
+    margin: 10px;
+    margin-top: 15px;
+}
+
+.float-right {
+    float: right;
+    margin-right: 10px;
+}
+
+.step-error {
+    float: right;
+    min-width: 200px;
+    color: red;
+    padding-top: 5px;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.mybtn {
+    display: inline-block;
+    background-color: rgba(223,190,98,1); 
+    height: 30px;
+    padding: 10px;
+    padding-top: 4px;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    position:relative;
+    cursor: pointer;
+}
+
+.mybtn:active {
+    bottom: -3px;
+    border-bottom-width: 0px;
+}
+
+.myinp {
+    padding-left: 5px;
+    height: 30px;
+    width: 60px;
+}
+
+.input-panel hr, .info-panel hr {
+	margin: 5px;
+}
+
+ .left-panel {
+     position: absolute;
+     overflow: hidden;
+ }
+
+.input-panel-btn {
+	width: 40px;
+	background-color: rgba(223,190,98,1);
+	bottom: 100px;
+    left: 0px;
+	height: 150px;
+    cursor: pointer;
+    z-index:10;
+
+    padding-top: 65px;
+    padding-left: 10px;
+}
+
+.input-panel {
+	width: 170px;
+	background-color: rgba(223,190,98, 0.3);
+	bottom: 100px;
+    left: 50px;
+	height: 150px;
+    z-index:5;
+}
+
+.input-panel div {
+    cursor: pointer;
+    padding: 5px;
+    padding-left: 20px;
+}
+
+.input-panel div:hover {
+    background-color: rgba(223,190,98, 1);
+}
+
+.select-panel {
+	bottom: 160px;
+    left: 225px;
+	height: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+.push-panel {
+    bottom: 220px;
+    left: 225px;
+	height: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+.random-panel {
+    bottom: 130px;
+    left: 225px;
+	height: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+.wisout-visualization-panel {
+    bottom: 100px;
+    left: 225px;
+	height: 150px;
+    width: 150px;
+    cursor: pointer;
+    display: none;
+}
+
+.wisout-visualization-result-panel {
+    bottom: 100px;
+    left: 225px;
+	height: 150px;
+    width: 150px;
+    overflow-y: scroll;
+    padding: 20px;
+    border-width: 1px;
+    border-style: solid;
+    display: none;
+    font-size: 14pt;
+}
+
+.wisout-visualization-panel textarea {
+    width: 100%;
+    height: 115px;
+    resize: none;
+}
+
+.btn-wv {
+    margin-left: 30px;
+}
+
+.error-panel-left {
+    padding: 5px;
+    color: red;
+    bottom: 100px;
+    left: 225px;
+	height: 30px;
+    display: none;
+}
+
+.info-panel-btn {
+    position: absolute;
+	width: 40px;
+	background-color: rgba(223,190,98,1);
+	bottom: 270px;
+    right: 0px;
+	height: 120px;
+    cursor: pointer;
+    z-index:10;
+
+    padding-top: 50px;
+    padding-left: 15px;
+}
+
+.info-panel {
+    position: absolute;
+	background-color: rgba(223,190,98, 0.3);
+    overflow: hidden;
+	bottom: 270px;
+    right: 50px;
+	height: 120px;
+}
+
+.info-panel span {
+    font-weight: bold;
+}
+
+.info-panel div {
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.operation-result-panel-btn {
+    position: absolute;
+	width: 40px;
+	background-color: rgba(223,190,98,1);
+	bottom: 100px;
+    right: 0px;
+	height: 158px;
+    cursor: pointer;
+    z-index:10;
+
+    padding-top: 70px;
+    padding-left: 15px;
+}
+
+.operation-result-panel {
+    position: absolute;
+	background-color: rgba(223,190,98, 0.3);
+    overflow: hidden;
+	bottom: 100px;
+    right: 50px;
+	height: 158px;
+    width: 290px;
+}
+
+.info-row {
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.info-row-end {
+   background-color: rgba(194,223,98,0.7);
+}
+
+.info-row:hover {
+    background-color: rgba(223,190,98,1);
+}
+
+#operation-inner-div {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.info-panel p {
+	margin-left: 20px;
+}
+
+.input-panel .form-control {
+	display: inline-block;
+	width: 150px;
+	margin-left: 20px;
+}
+
+.pop-btn {
+	margin-left: 175px;
+}
+
+/*----------nodes-------------*/
+
+.node {
+}
+
+#node_0 circle  {
+	display: none;
+}
+
+#link_2,#link_3,#link_4,#link_5, #link_6 {
+	display: none;
+}
+
+#node_1  circle,#node_2  circle,#node_3  circle,#node_4 circle {
+	
+}
+
+.node circle {
+	fill: #fff;
+	stroke: #ccc;
+	stroke-width: 3px;
+}
+
+.node text {
+	font: 12px sans-serif;
+}
+
+.link, .r_link {
+	fill: none;
+	stroke: #ccc;
+	stroke-width: 2px;
+}
+
+.marker{
+	stroke: #ccc;
+	fill: #ccc;
+}
